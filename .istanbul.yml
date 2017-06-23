@@ -1,0 +1,11 @@
+instrumentation:
+  root: '.'
+  excludes:
+    - 'container.js'
+    - 'app/Application.js'
+    - 'interfaces/http/server.js'
+reporting:
+  dir: './coverage'
+  reports:
+    - html
+    - lcov

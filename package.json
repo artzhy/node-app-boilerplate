@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "Boilerplate for node DDD development",
   "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo 'test...'"
+    "lint": "eslint {src,test,config}/**/*.js",
+    "coverage": "NODE_PATH=. NODE_ENV=test istanbul cover mocha",
+    "test": "NODE_PATH=. NODE_ENV=test mocha",
+    "start": "mocha --help"
   },
   "repository": {
     "type": "git",
@@ -17,7 +23,8 @@
     "node",
     "domain",
     "driven",
-    "development"
+    "development",
+    "boilerplate"
   ],
   "author": "dmitry.tuzenkov@gmail.com",
   "license": "ISC",
@@ -26,11 +33,28 @@
   },
   "homepage": "https://github.com/dmitry-tuzenkov/node-app-boilerplate#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.3",
-    "dot-env": "0.0.1",
+    "debug": "^2.6.8",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "express-rate-limit": "^2.8.0",
+    "helmet": "^3.6.1",
+    "knex": "^0.13.0",
+    "pg": "^6.4.0",
+    "pg-query-stream": "^1.0.0",
     "pm2": "^2.5.0",
     "structure": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-plugin-func-call": "^1.0.3",
+    "eslint-plugin-require-path-exists": "^1.1.7",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
   }
 }

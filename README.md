@@ -1,6 +1,6 @@
 # node-app-boilerplate
 Node App boilerplate
-```js
+```javascript
 - 1. (feature.js + feature.spec.js)
 
 - .env (dot env notation for configuration)
