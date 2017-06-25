@@ -1,18 +1,28 @@
 'use strict'
 const debug = require('debug')
 
-module.export = function trace () {
+class Logger {
+  constructor ({configs}) {
+    this.configs = configs
+    this.logger = debug('app')
+  }
+
+  trace () {
+    return this.logger(...arguments)
+  }
+
+  log () {
+    return this.logger(...arguments)
+  }
+
+  warn () {
+    return this.logger(...arguments)
+  }
+
+  error () {
+    return debug('app:error')(...arguments)
+  }
 
 }
 
-module.export = function error () {
-
-}
-
-module.export = function warn () {
-
-}
-
-module.export = function log () {
-  return debug()
-}
+module.exports = Logger
