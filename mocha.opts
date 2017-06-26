@@ -1,0 +1,7 @@
+
+ infra/**/*.js
+ controllers/**/*.js
+ domain/**/*.js
+ core/**/*.js
+ 
+ --recursive

@@ -11,8 +11,8 @@ module.exports = function errorHandler ({ logger, AppError }) {
     const json = appError.toJSON()
     logger.error(json)
 
-    if (process.env.NODE_ENV !== 'dev') {
-      delete json.stack
+    if (process.env.NODE_ENV === 'dev') {
+      json.stack = appError.getStack()
     }
 
     return res

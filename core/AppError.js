@@ -10,16 +10,30 @@ class AppError extends Error {
   }
 
   getStack () {
-    return this.stack
+    return this.stack.split('\n')
   }
 
   toJSON () {
     return {
       type: this.type,
-      params: JSON.stringify(this.params),
+      params: this.params,
       message: this.message,
       httpCode: this.httpCode
     }
+  }
+
+  static factory (type) {
+    let error
+    switch (type) {
+      case 'api_error':
+      default: error = {
+        httpCode: 404,
+        message: 'Api Not Found Error',
+        type,
+      }
+    }
+
+    return new AppError(error)
   }
 }
 

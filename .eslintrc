@@ -3,7 +3,9 @@ env:
   es6: true
 
 globals:
-  require: true
+  require: true,
+  describe: true,
+  it: true,
 
 parserOptions:
   ecmaVersion: 2017

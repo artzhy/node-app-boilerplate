@@ -1,41 +1,32 @@
 'use strict'
 const cors = require('cors')
+const helmet = require('helmet')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const compression = require('compression')
 const { Router } = require('express')
 const httpAuthMiddleware = require('./middlewares/auth')
 
-module.exports = function ({ container, httpErrorMiddleware, systemRouter, AppError }) {
+module.exports = function ({ configs, httpContainerMiddleware, httpErrorMiddleware,
+  httpRateMiddleware, systemRouter, AppError }) {
+
   const router = Router()
   const apiRouter = Router()
 
   apiRouter
+    .use(httpRateMiddleware)
     .use(cors())
     .use(bodyParser.json())
+    .use(cookieParser())
     .use(compression())
-    .use(containerMiddleware(container))
+    .use(helmet.noCache())
+    .use(httpContainerMiddleware)
     .use(httpAuthMiddleware)
 
   return router
     .use('/api/system', systemRouter)
-    .use('/api/v1/', apiRouter)
-    .use('/*', fallbackMiddleware(AppError))
+    .use('/api/v1', apiRouter)
+    .use('*', (req, res, next) => next(AppError.factory('api_error')))
     .use(httpErrorMiddleware)
-}
 
-function containerMiddleware (container) {
-  return (req, res, next) => {
-    req.container = container
-    next()
-  }
-}
-
-function fallbackMiddleware (AppError) {
-  return (req, res, next) => next(
-    new AppError({
-      type: 'api_error',
-      httpCode: 404,
-      message: 'api not found error'
-    })
-  )
 }

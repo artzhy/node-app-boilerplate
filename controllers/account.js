@@ -1,5 +1,5 @@
 'use strict'
 
 module.exports = ({ logger }) => ({
-  action: () => logger.log('...AccountAction()...')
+  action: () => Promise.resolve('...AccountAction()...')
 })

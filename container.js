@@ -1,4 +1,5 @@
 'use strict'
+const util = require('util')
 const { createContainer, Lifetime, asValue, asFunction, asClass} = require('awilix')
 const container = createContainer()
 
@@ -24,13 +25,30 @@ container
 
 container
   .register({
-    systemController: asFunction(require('./controllers/system'))
+    // TODO: How to add a bulk controllers
+    // systemController: asFunction(require('./controllers/system'))
   })
 
 container
   .register({
     http: asFunction(require('./interfaces/http')),
     httpRouter: asFunction(require('./interfaces/http/router')),
-    systemRouter: asFunction(require('./interfaces/http/routes/system')),
-    httpErrorMiddleware: asFunction(require('./interfaces/http/middlewares/error'))
+    // TODO: How to add a bulk routes
+    // systemRouter: asFunction(require('./interfaces/http/routes/system')),
+    httpErrorMiddleware: asFunction(require('./interfaces/http/middlewares/error')),
+    httpRateMiddleware: asFunction(require('./interfaces/http/middlewares/rate-limiter')),
+    httpContainerMiddleware: asFunction(require('./interfaces/http/middlewares/container'))
   })
+
+container.loadModules([ './controllers/*.js' ], {
+  formatName: (match, module) => util.format('%sController', match)
+})
+
+container.loadModules([ './interfaces/http/routes/*.js' ], {
+  formatName: (match, module) => util.format('%sRouter', match)
+})
+
+// container.loadModules([ './interfaces/http/middlewares/*.js' ], {
+//   formatName: (match, module) => util
+//     .format('http%sMiddleware', (match.charAt(0).toUpperCase() + match.substring(1)))
+// })

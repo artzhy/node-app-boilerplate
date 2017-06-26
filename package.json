@@ -11,8 +11,8 @@
   },
   "scripts": {
     "lint": "eslint {src,test,config}/**/*.js",
-    "coverage": "NODE_PATH=. NODE_ENV=test istanbul cover mocha",
-    "test": "NODE_PATH=. NODE_ENV=test mocha",
+    "coverage": "NODE_PATH=. NODE_ENV=coverage istanbul --include-all-sources cover node_modules/mocha/bin/_mocha -- --opts ./mocha.opts",
+    "test": "NODE_PATH=. NODE_ENV=test mocha --opts ./mocha.opts",
     "start": "NODE_PATH=. NODE_ENV=dev node --inspect-brk index.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "awilix": "^2.4.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.3",
@@ -49,6 +50,7 @@
     "pg": "^6.4.0",
     "pg-query-stream": "^1.0.0",
     "pm2": "^2.5.0",
+    "sinon": "^2.3.5",
     "structure": "^1.2.0"
   },
   "devDependencies": {
