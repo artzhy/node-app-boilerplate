@@ -26,7 +26,8 @@ container
 container
   .register({
     // TODO: How to add a bulk controllers
-    // systemController: asFunction(require('./controllers/system'))
+    systemController: asFunction(require('./controllers/system')),
+    accountController: asFunction(require('./controllers/account'))
   })
 
 container
@@ -40,9 +41,9 @@ container
     httpContainerMiddleware: asFunction(require('./interfaces/http/middlewares/container'))
   })
 
-container.loadModules([ './controllers/*.js' ], {
-  formatName: (match, module) => util.format('%sController', match)
-})
+// container.loadModules([ '!./controllers/*.spec.js', './controllers/*.js'], {
+//   formatName: (match, module) => util.format('%sController', match)
+// })
 
 container.loadModules([ './interfaces/http/routes/*.js' ], {
   formatName: (match, module) => util.format('%sRouter', match)

@@ -4,6 +4,7 @@ instrumentation:
     - 'container.js'
     - 'app/Application.js'
     - 'interfaces/http/server.js'
+    - '**/*.spec.js'
 reporting:
   dir: './coverage'
   reports:

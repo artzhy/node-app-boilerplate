@@ -4,6 +4,7 @@ const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
+const morgan = require('morgan')
 const { Router } = require('express')
 const httpAuthMiddleware = require('./middlewares/auth')
 
@@ -20,6 +21,7 @@ module.exports = function ({ configs, httpContainerMiddleware, httpErrorMiddlewa
     .use(cookieParser())
     .use(compression())
     .use(helmet.noCache())
+    .use(morgan('dev'))
     .use(httpContainerMiddleware)
     .use(httpAuthMiddleware)
 
