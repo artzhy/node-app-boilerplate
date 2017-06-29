@@ -1,4 +1,5 @@
 'use strict'
+const bcrypt = require('bcryptjs')
 const { attributes } = require('structure')
 
 const User = attributes({
@@ -8,11 +9,9 @@ const User = attributes({
   password: { type: String, required: true },
   roles: { type: Array, itemType: String, default: []}
 })(class User {
-  setPassword (password) {
-    return '$bcrypted'
+  static encryptPassword (string) {
+    return bcrypt.genSalt(10).then(salt => bcrypt.hash(string, salt))
   }
 })
-
-User.MIN_LEGAL_AGE = 21
 
 module.exports = User

@@ -26,6 +26,7 @@ container
 container
   .register({
     // TODO: How to add a bulk controllers
+    authController: asFunction(require('./controllers/auth')),
     systemController: asFunction(require('./controllers/system')),
     accountController: asFunction(require('./controllers/account'))
   })
@@ -38,6 +39,7 @@ container
     // systemRouter: asFunction(require('./interfaces/http/routes/system')),
     httpErrorMiddleware: asFunction(require('./interfaces/http/middlewares/error')),
     httpRateMiddleware: asFunction(require('./interfaces/http/middlewares/rate-limiter')),
+    httpAuthMiddleware: asFunction(require('./interfaces/http/middlewares/auth')),
     httpContainerMiddleware: asFunction(require('./interfaces/http/middlewares/container'))
   })
 

@@ -13,7 +13,8 @@
     "lint": "eslint {src,test,config}/**/*.js",
     "coverage": "NODE_PATH=. NODE_ENV=coverage istanbul --include-all-sources cover node_modules/mocha/bin/_mocha -- --opts ./mocha.opts",
     "test": "NODE_PATH=. NODE_ENV=test mocha --opts ./mocha.opts",
-    "start": "NODE_PATH=. NODE_ENV=dev node --inspect-brk index.js"
+    "start": "NODE_PATH=. NODE_ENV=dev nodemon index.js",
+    "debug": "NODE_PATH=. NODE_ENV=dev node --inspect-brk index.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/dmitry-tuzenkov/node-app-boilerplate#readme",
   "dependencies": {
     "awilix": "^2.4.0",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "chai": "^4.0.2",
@@ -61,6 +63,7 @@
     "eslint-plugin-require-path-exists": "^1.1.7",
     "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
     "supertest": "^3.0.0"
   }
 }
