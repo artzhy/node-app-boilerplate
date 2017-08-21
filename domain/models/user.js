@@ -7,7 +7,9 @@ const User = attributes({
   login: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  roles: { type: Array, itemType: String, default: []}
+	status: { type: Number, default: 1 },
+  roles: { type: Array, itemType: String, default: []},
+	createdAt: { type: Date, default: () => new Date() }
 })(class User {
   static encryptPassword (string) {
     return bcrypt.genSalt(10).then(salt => bcrypt.hash(string, salt))

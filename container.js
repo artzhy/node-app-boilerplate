@@ -19,6 +19,7 @@ container
     AppError: asValue(require('./core/AppError')),
     configs: asValue(require('./configs')),
     database: asFunction(require('./infra/database')),
+    seeders: asFunction(require('./infra/database/seeders')),
     logger: asClass(require('./infra/logger/adapter')).singleton(),
     container: asValue(container)
   })
